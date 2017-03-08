@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/generalBackground">
+
+    <TextView
+        android:text="Distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="119dp"
+        android:id="@+id/Distance"
+        android:textColor="#e5ede1"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Cuisine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:id="@+id/Cuisine"
+        android:textColor="#e5ede1"
+        android:textSize="24sp"
+        android:layout_below="@+id/Distance"
+        android:layout_alignLeft="@+id/Distance"
+        android:layout_alignStart="@+id/Distance" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_alignBottom="@+id/Cuisine"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/seekBar"
+        android:id="@+id/imageView"
+        android:layout_marginTop="31dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/Distance"
+        android:layout_toEndOf="@+id/Distance"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp" />
+
+</RelativeLayout>
