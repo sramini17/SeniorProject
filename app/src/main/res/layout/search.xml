@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/generalbackground">
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Enter Cuisine"
+        android:ems="10"
+        android:layout_marginRight="36dp"
+        android:layout_marginEnd="36dp"
+        android:id="@+id/cuisinesText"
+        android:background="#FFF"
+        android:layout_alignBaseline="@+id/cuisineLabel"
+        android:layout_alignBottom="@+id/cuisineLabel"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/editText4" />
+
+    <Button
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/submitFields"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="69dp" />
+
+    <TextView
+        android:text="Cuisine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cuisineLabel"
+        android:textSize="24sp"
+        android:textColor="#FFF"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_below="@+id/editText4"
+        android:layout_toLeftOf="@+id/cuisinesText"
+        android:layout_toStartOf="@+id/cuisinesText"
+        android:layout_marginTop="94dp" />
+
+    <TextView
+        android:text="Preference"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pref"
+        android:textColor="#FFF"
+        android:textSize="24sp"
+        android:layout_marginTop="60dp"
+        android:layout_below="@+id/cuisineLabel"
+        android:layout_toLeftOf="@+id/cuisinesText"
+        android:layout_toStartOf="@+id/cuisinesText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Select Preference"
+        android:ems="10"
+        android:id="@+id/editText5"
+        android:background="#FFF"
+        android:layout_alignBottom="@+id/pref"
+        android:layout_alignLeft="@+id/submitFields"
+        android:layout_alignStart="@+id/submitFields" />
+
+
+</RelativeLayout>
