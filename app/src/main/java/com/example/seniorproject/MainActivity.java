@@ -13,11 +13,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onButtonClick(View v) {
+   /* public void onButtonClick(View v) {
         if(v.getId() == R.id.signInButton) {
             Intent i = new Intent(this, Display.class);
             startActivity(i);
-        }
+        }*/
 
-    }
 }
