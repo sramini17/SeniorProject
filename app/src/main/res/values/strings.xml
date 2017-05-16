@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Senior Project</string>
     <string name="type">Enter type of Meal</string>
-    <string name="distance">Enter distance</string>
+    <string name="city">Enter Location ex.(City, State)</string>
     <string name="submit_button">Submit</string>
 </resources>
