@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorTextField">#FFFFFF</color>
+    <color name="filledStar">#0000FF</color>
+    <color name="notFilledStar">#e5e5ff</color>
 </resources>

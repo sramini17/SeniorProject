@@ -151,13 +151,13 @@ public class SearchActivity extends Activity {
     }
 
     public void onSuccess(ArrayList<Business> businesses) {
-        ArrayList<String> businessIDs = new ArrayList<>();
+       /* ArrayList<String> businessIDs = new ArrayList<>();
 
         for(Business b: businesses) {
             businessIDs.add(b.id());
-        }
+        }*/
 
-        startNewActivity.putExtra("businesses", businessIDs);
+        startNewActivity.putExtra("businesses", businesses);
         startActivity(startNewActivity);
 
     }
