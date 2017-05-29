@@ -2,9 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="80dip"
+    android:layout_height="230dip"
     android:background="@color/colorTextField"
-    android:padding="4dp">
+    android:padding="4dp"
+    android:baselineAligned="false"
+    android:weightSum="1">
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -23,7 +25,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_weight="0.67">
 
         <TextView
             android:text="SLO DOCO"
@@ -52,7 +55,11 @@
             android:id="@+id/rating"
             android:rating="3"
             android:paddingBottom="4dp"
-            android:clickable="false">
+            android:clickable="false"
+            android:isIndicator="true"
+            android:focusableInTouchMode="false"
+            android:focusable="false"
+            >
 
         </RatingBar>
 

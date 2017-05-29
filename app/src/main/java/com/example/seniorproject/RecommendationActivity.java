@@ -2,11 +2,13 @@ package com.example.seniorproject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -39,9 +41,21 @@ public class RecommendationActivity extends Activity {
         Bundle data = getIntent().getExtras();
         ArrayList<Business> businesses = (ArrayList<Business>) data.getSerializable("businesses");
 
-        RestaurantAdapter adapter = new RestaurantAdapter(this, R.layout.row, businesses);
+        final RestaurantAdapter adapter = new RestaurantAdapter(this, R.layout.row, businesses);
         ListView restListView = (ListView) findViewById(R.id.resList);
+
         restListView.setAdapter(adapter);
+        restListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Business item = (Business) adapter.getItem(position);
+                Intent intent = new Intent(RecommendationActivity.this, RateActivity.class);
+                intent.putExtra("name", item.name());
+                intent.putExtra("id", item.id());
+                startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -64,7 +78,7 @@ public class RecommendationActivity extends Activity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if(convertView == null) {
-                convertView = inflater.inflate(R.layout.row, null);
+                convertView = inflater.inflate(R.layout.row, parent, false);
             }
 
             ImageView restaurantIcon;
