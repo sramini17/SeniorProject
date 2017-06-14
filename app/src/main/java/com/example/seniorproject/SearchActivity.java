@@ -82,9 +82,14 @@ public class SearchActivity extends Activity {
             EditText type = (EditText) findViewById(R.id.mealType);
             String typeMeal = type.getText().toString();
 
+        /*Get distance filter*/
+            EditText dist = (EditText) findViewById(R.id.distance);
+            double distMeters = Integer.parseInt(dist.getText().toString()) * 1609.34 ;
+            String distance = Double.toString(distMeters);
 
 
-            new BusinessOperation().execute(location, typeMeal);
+
+            new BusinessOperation().execute(location, typeMeal, distance);
 
 
      /*   params.put("term", typeMeal);
@@ -124,8 +129,17 @@ public class SearchActivity extends Activity {
         protected ArrayList<Business> doInBackground(String... params) {
             try {
                 Map<String, String> p = new HashMap<>();
-                p.put("term", params[1]);
+                String[] terms = params[1].split(",");
+                String termFilter = "";
+                for(int i = 0; i < terms.length; i++) {
+                    termFilter += "+" + terms[i];
+                }
+
+                p.put("term", termFilter);
+                p.put("radius_filter", params[2]);
+                p.put("sort", "1");
                 Call<SearchResponse> call = yelpAPI.search(params[0], p);
+
                 Response<SearchResponse> response = call.execute();
                 call.cancel();
                 SearchResponse searchResponse = response.body();
