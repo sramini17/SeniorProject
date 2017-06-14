@@ -8,8 +8,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.yelp.clientlib.entities.Business;
 
 import java.io.InputStream;
@@ -24,6 +30,12 @@ import java.util.Random;
  */
 
 public class FeelingLuckyActivity extends Activity {
+
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mRatingRef = mRootRef.child("restaurants");
+    float average = 0;
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lucky);
@@ -32,11 +44,11 @@ public class FeelingLuckyActivity extends Activity {
     }
 
     public void setFields() {
-        int index;
+        int index =0;
         Bundle data = getIntent().getExtras();
         ArrayList<Business> businesses = (ArrayList<Business>) data.getSerializable("businesses");
-        Random random = new Random();
-        index = random.nextInt(businesses.size());
+      //  Random random = new Random();
+     //   index = random.nextInt(businesses.size());
         TextView name = (TextView) findViewById(R.id.nameRestLucky);
         name.setText(businesses.get(index).name());
 
@@ -44,6 +56,17 @@ public class FeelingLuckyActivity extends Activity {
         if (pic != null) {
             new FeelingLuckyActivity.ImageDownloaderTask(pic).execute(businesses.get(index).imageUrl());
         }
+//
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.restLuckyRating);
+
+        try {
+            average = MainActivity.map.get(businesses.get(index).name());
+            ratingBar.setRating(average);
+        } catch (Exception e) {
+
+        }
+
+        //ratingBar.setRating(0);
 
 
 

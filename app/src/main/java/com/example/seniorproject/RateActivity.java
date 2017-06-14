@@ -104,6 +104,7 @@ public class RateActivity extends Activity {
 
                         actualAverage = total/restaurant.num;
 
+                        MainActivity.map.put(restName, actualAverage);
                     }
 //
 

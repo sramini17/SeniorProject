@@ -106,7 +106,18 @@ public class RecommendationActivity extends Activity {
             name.setText(businesses.get(position).name());
             distance.setText(businesses.get(position).location().city());
 
-            ratingBar.setRating(businesses.get(position).rating().floatValue());
+//            try {
+                float average = 0;
+                if (MainActivity.map.get(businesses.get(position).name()) != null) {
+                    average = MainActivity.map.get(businesses.get(position).name());
+                    ratingBar.setRating(average);
+                } else {
+                    ratingBar.setRating(average);
+                }
+//            } catch (Exception e) {
+//
+//            }
+
             if (restaurantIcon != null) {
                 new ImageDownloaderTask(restaurantIcon).execute(businesses.get(position).imageUrl());
             }

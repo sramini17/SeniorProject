@@ -153,11 +153,13 @@ public class SearchActivity extends Activity {
         @Override
         protected ArrayList<Business> doInBackground(String... params) {
             try {
+                allFoods food = addElements.addToArray(test.allTypes, test.allFoods);
+
                 Map<String, String> p = new HashMap<>();
                 String[] terms = params[1].split(",");
                 String termFilter = "";
                 for(int i = 0; i < terms.length; i++) {
-                    termFilter += "+" + terms[i];
+                    termFilter += "+" + test.createRec(food, terms[i]);
                 }
 
                 p.put("term", termFilter);
