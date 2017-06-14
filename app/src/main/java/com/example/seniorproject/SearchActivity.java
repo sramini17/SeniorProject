@@ -84,26 +84,37 @@ public class SearchActivity extends Activity {
 
     public void submit(View view) throws IOException{
 
-
-            startNewActivity = new Intent(this, RecommendationActivity.class);
+        startNewActivity = new Intent(this, RecommendationActivity.class);
 
 
         /*Get location for query*/
-            EditText loc = (EditText) findViewById(R.id.location);
-            String location = loc.getText().toString();
+        EditText loc = (EditText) findViewById(R.id.location);
+        String location = loc.getText().toString();
+
+        if(location.equals("")) {
+            location = "San Luis Obispo, CA";
+        }
 
         /*Get Meal Type for query*/
-            EditText type = (EditText) findViewById(R.id.mealType);
-            String typeMeal = type.getText().toString();
+        EditText type = (EditText) findViewById(R.id.mealType);
+        String typeMeal = type.getText().toString();
+
+        if(typeMeal.equals("")) {
+            typeMeal = "lunch";
+        }
 
         /*Get distance filter*/
-            EditText dist = (EditText) findViewById(R.id.distance);
-            double distMeters = Integer.parseInt(dist.getText().toString()) * 1609.34 ;
-            String distance = Double.toString(distMeters);
+        EditText dist = (EditText) findViewById(R.id.distance);
+        double distMeters = Integer.parseInt(dist.getText().toString()) * 1609.34 ;
 
 
+        if(dist.getText().toString().equals("")) {
+            distMeters = 25 * 1609.34;
+        }
 
-            new BusinessOperation().execute(location, typeMeal, distance);
+        String distance = Double.toString(distMeters);
+
+        new BusinessOperation().execute(location, typeMeal, distance);
 
 
      /*   params.put("term", typeMeal);
