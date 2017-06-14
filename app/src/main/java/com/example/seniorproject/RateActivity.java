@@ -23,9 +23,10 @@ public class RateActivity extends Activity {
     Button submit;
     String restName;
 
-
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mRatingRef = mRootRef.child("restaurants");
+
+    public float actualAverage;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +65,75 @@ public class RateActivity extends Activity {
             }
         });
 
+
+        //mRatingRef.addValueEventListener(listener);
+    }
+
+    //@Override
+    protected void updateFun() {
+//        super.onStart();
+
+        if (restName != null) {
+            DatabaseReference curRestRef = mRootRef.child("restaurants").child(restName);
+
+            curRestRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    if (snapshot.getValue(Restaurant.class).name.equals(restName)) {
+
+                    Restaurant restaurant = dataSnapshot.getValue(Restaurant.class);
+
+                    if (restaurant != null) {
+
+                        if (restaurant.num <= 0) {
+                            DatabaseReference num = mRootRef.child("restaurants").child(restName).child("num");
+                            num.setValue(1);
+                        } else {
+                            DatabaseReference num = mRootRef.child("restaurants").child(restName).child("num");
+                            int ratingsNum = dataSnapshot.getValue(Restaurant.class).num;
+                            num.setValue(ratingsNum + 1);
+                        }
+//
+                        float total = restaurant.total;
+                        float curAdd = restaurant.curVal;
+                        DatabaseReference restRatingRef = mRootRef.child("restaurants").child(restName).child("total");
+                        //RatingBar ratingBar = (RatingBar)findViewById(R.id.userRate);
+                        //float rating = ratingBar.getRating();
+                        restRatingRef.setValue(total + curAdd);
+
+                        actualAverage = total/restaurant.num;
+
+                    }
+//
+
+//                    DatabaseReference temp = mRootRef.child("restaurants").child("temp").child("average");
+//
+//                    if (new Float(restaurant.average) != null) {
+//                        temp.setValue(restaurant.average);
+//                    }
+//
+//                    if (restaurant.name.equals("POTATO")) {
+//                        float avg = restaurant.average;
+//
+//                        //System.out.print("THE TEMPNAME IS:" + tempName);
+//                        //email fetched from database
+//
+//                        DatabaseReference temp = mRootRef.child("restaurants").child("temp").child("average");
+//                        temp.setValue(avg);
+//                    } else {
+//                        DatabaseReference temp = mRootRef.child("restaurants").child("temp").child("average");
+//                        temp.setValue(-2);
+//                    }
+//                    }
+//                }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
+        }
     }
 
     public void setFields() {
@@ -76,12 +146,33 @@ public class RateActivity extends Activity {
     public void submit() {
         //have the number of stars
         RatingBar ratingBar = (RatingBar)findViewById(R.id.userRate);
-        ratingBar.getNumStars();
+        float rating = ratingBar.getRating();
 
         //restName is restaurant name
-        DatabaseReference restRatingRef = mRootRef.child("restaurants").child(restName);
-        restRatingRef.setValue("good");
+        DatabaseReference restRatingRef = mRootRef.child("restaurants").child(restName).child("curVal");
+        restRatingRef.setValue(rating);
 
+        DatabaseReference restNameRef = mRootRef.child("restaurants").child(restName).child("name");
+        restNameRef.setValue(restName);
+
+        updateFun();
+
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        //ref
+
+        //int size = dataSnapshot.getValue(Integer.class);
+                //Dinosaur dinosaur = dataSnapshot.getValue(Dinosaur.class);
+
+        //if (restRatingRef.get)
+
+//        DatabaseReference ratingStuff = FirebaseDatabase.getInstance().getReference("/asdfadsf`");
+//        if (ratingStuff == null) {
+//            DatabaseReference temp = mRootRef.child("restaurants").child("temp");
+//            temp.setValue("DSLKF");
+//        } else {
+//            DatabaseReference temp = mRootRef.child("restaurants").child("temp");
+//            temp.setValue("there");
+//        }
 
         finish();
     }
