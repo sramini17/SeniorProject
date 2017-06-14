@@ -50,6 +50,11 @@ public class RecommendationActivity extends Activity {
         Bundle data = getIntent().getExtras();
         ArrayList<Business> businesses = (ArrayList<Business>) data.getSerializable("businesses");
 
+        if(businesses.size() == 0 ) {
+            TextView none = (TextView) findViewById(R.id.noResults);
+            none.setText("No Results were found!");
+        }
+
         final RestaurantAdapter adapter = new RestaurantAdapter(this, R.layout.row, businesses);
         ListView restListView = (ListView) findViewById(R.id.resList);
 

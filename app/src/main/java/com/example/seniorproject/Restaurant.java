@@ -1,14 +1,11 @@
 package com.example.seniorproject;
 
-/**
- * Created by Mogwai on 6/13/2017.
- */
 
 public class Restaurant {
-    String name;
-    float total;
-    float curVal;
-    int num;
+    public String name;
+    public float total;
+    public float curVal;
+    public int num;
 
     public Restaurant() {
 
