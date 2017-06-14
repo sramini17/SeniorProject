@@ -52,7 +52,7 @@ public class RecommendationActivity extends Activity {
 
         if(businesses.size() == 0 ) {
             TextView none = (TextView) findViewById(R.id.noResults);
-            none.setText("No Results were found!");
+            none.setText("No Results Were Found!");
         }
 
         final RestaurantAdapter adapter = new RestaurantAdapter(this, R.layout.row, businesses);
