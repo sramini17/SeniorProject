@@ -94,10 +94,9 @@
         android:text="I'm Feeling Lucky!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="54dp"
         android:id="@+id/feelingLucky"
+        android:layout_marginTop="58dp"
         android:layout_alignTop="@+id/submitButton"
-        android:layout_alignRight="@+id/mealType"
-        android:layout_alignEnd="@+id/mealType" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
