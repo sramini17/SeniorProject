@@ -54,6 +54,7 @@ public class SearchActivity extends Activity {
         yelpAPI = apiFactory.createAPI();
 
         Button btn = (Button) findViewById(R.id.submitButton);
+        Button lucky = (Button) findViewById(R.id.feelingLucky);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +67,19 @@ public class SearchActivity extends Activity {
                 }
             }
         });
+
+        lucky.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    feelingLucky(v);
+                }
+                catch (Exception e) {
+                    Log.e("ERROR", e.toString());
+                }
+            }
+        });
+
     }
 
     public void submit(View view) throws IOException{
@@ -119,6 +133,17 @@ public class SearchActivity extends Activity {
         call.enqueue(callback);
         call.cancel();*/
 
+
+
+    }
+
+
+    public void feelingLucky(View view) {
+        startNewActivity = new Intent(this, FeelingLuckyActivity.class);
+         /*Get location for query*/
+        EditText loc = (EditText) findViewById(R.id.location);
+        String location = loc.getText().toString();
+        new BusinessOperation().execute(location,"lunch", "25");
 
 
     }
