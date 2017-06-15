@@ -170,18 +170,48 @@ public class SearchActivity extends Activity {
                 String[] terms = params[1].split(",");
                 String termFilter = "";
                 for(int i = 0; i < terms.length; i++) {
-                    termFilter += "+" + test.createRec(food, terms[i]);
+                    termFilter += "+" + terms[i];
                 }
 
                 p.put("term", termFilter);
                 p.put("radius_filter", params[2]);
-                p.put("sort", "1");
+                p.put("sort", "2");
+                p.put("limit", "7");
                 Call<SearchResponse> call = yelpAPI.search(params[0], p);
+
 
                 Response<SearchResponse> response = call.execute();
                 call.cancel();
                 SearchResponse searchResponse = response.body();
-                return searchResponse.businesses();
+
+                Map<String, String> p2 = new HashMap<>();
+                termFilter = "";
+                for(int i = 0; i < terms.length; i++) {
+                    String appendThing = test.createRec(food, terms[i]);
+                    termFilter += "+" + appendThing;
+                }
+
+                p2.put("term", termFilter);
+                p2.put("radius_filter", params[2]);
+                p2.put("sort", "2");
+                p2.put("limit", "3");
+                Call<SearchResponse> call2 = yelpAPI.search(params[0], p2);
+
+
+                Response<SearchResponse> response2 = call2.execute();
+                call2.cancel();
+                SearchResponse searchResponse2 = response2.body();
+
+                ArrayList<Business> first = searchResponse.businesses();
+                ArrayList<Business> second = searchResponse2.businesses();
+
+                for (Business b : second) {
+                    if (!first.contains(b)) {
+                        first.add(b);
+                    }
+                }
+//                searchResponse.businesses().addAll(searchResponse2.businesses());
+                return first;
             } catch (Exception e ){
                 Log.e("ERROR", e.toString());
             }

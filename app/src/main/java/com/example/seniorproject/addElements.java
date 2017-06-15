@@ -9,39 +9,39 @@ class addElements {
         allFoods fooders = new allFoods();
 
         /*********************** CREATE THE GENRES *******************/
-        foodGenre Asian = new foodGenre("Asian");
-        foodGenre Mexican = new foodGenre("Mexican");
-        foodGenre American = new foodGenre("American");
-        foodGenre European = new foodGenre("European");
+        foodGenre Asian = new foodGenre("asian");
+        foodGenre Mexican = new foodGenre("mexican");
+        foodGenre American = new foodGenre("american");
+        foodGenre European = new foodGenre("european");
 
         /*********************** CREATE THE TYPES *********************/
-        foodType MX = new foodType("Mexican", Mexican, allTypes);
+        foodType MX = new foodType("mexican", Mexican, allTypes);
 
 
-        foodType Spanish = new foodType("Spanish", European);
-        foodType French = new foodType("French", European);
-        foodType Irish = new foodType("Irish", European);
-        foodType Italian = new foodType("Italian", European);
+        foodType Spanish = new foodType("spanish", European);
+        foodType French = new foodType("french", European);
+        foodType Irish = new foodType("irish", European);
+        foodType Italian = new foodType("italian", European);
 
-        foodType Japanese = new foodType("Japanese", Asian);
-        foodType Chinese = new foodType("Chinese", Asian);
-        foodType Korean = new foodType("Korean", Asian);
-        foodType Thai = new foodType("Thai", Asian);
-        foodType Indian = new foodType("Indian", Asian);
+        foodType Japanese = new foodType("japanese", Asian);
+        foodType Chinese = new foodType("chinese", Asian);
+        foodType Korean = new foodType("korean", Asian);
+        foodType Thai = new foodType("thai", Asian);
+        foodType Indian = new foodType("indian", Asian);
 
-        foodType AM = new foodType("American", American);
+        foodType AM = new foodType("american", American);
 
         /************* CREATE THE FOODS **************************/
 
 
-        food Sushi = new food("Sushi", Japanese);
-        food chickenTeriyaki = new food("Chicken Teriyaki", Japanese);
-        food udon = new food("Udon", Japanese);
+        food Sushi = new food("sushi", Japanese);
+        food chickenTeriyaki = new food("chicken teriyaki", Japanese);
+        food udon = new food("udon", Japanese);
 
-        food burger = new food("Burger", AM);
-        food hamburger = new food("Hamburger", AM);
-        food cheeseburger = new food("Cheeseburger", AM);
-        food pizza = new food("Pizza", AM);
+        food burger = new food("burger", AM);
+        food hamburger = new food("hamburger", AM);
+        food cheeseburger = new food("cheeseburger", AM);
+        food pizza = new food("pizza", AM);
 
         /********************** ADD GENRES TO ALLFOODS *****************/
         fooders.add(Asian);
@@ -79,8 +79,13 @@ class addElements {
         allTypes.add(Japanese);
         allTypes.add(Chinese);
         allTypes.add(Korean);
+        allTypes.add(Indian);
+        allTypes.add(Thai);
         allTypes.add(Spanish);
         allTypes.add(AM);
+        allTypes.add(French);
+        allTypes.add(Irish);
+        allTypes.add(Italian);
 
         allFoods.add(Sushi);
         allFoods.add(chickenTeriyaki);
@@ -92,6 +97,6 @@ class addElements {
         /*for (food food : allFoods) {
             System.out.println(food.type);
         }*/
-        return fooders; 
+        return fooders;
     }
 }
