@@ -10,24 +10,19 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.yelp.clientlib.connection.YelpAPI;
 import com.yelp.clientlib.connection.YelpAPIFactory;
 import com.yelp.clientlib.entities.Business;
 import com.yelp.clientlib.entities.SearchResponse;
 
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 /**
  * Created by sramini on 2/12/17.
@@ -154,7 +149,12 @@ public class SearchActivity extends Activity {
          /*Get location for query*/
         EditText loc = (EditText) findViewById(R.id.location);
         String location = loc.getText().toString();
-        new BusinessOperation().execute(location,"lunch", "25");
+        Random rand = new Random();
+
+        int temp = rand.nextInt(RecCreator.allTypes.size());
+        String reco = RecCreator.allTypes.get(temp).type;
+
+        new BusinessOperation().execute(location,reco, "25");
 
 
     }
@@ -164,7 +164,7 @@ public class SearchActivity extends Activity {
         @Override
         protected ArrayList<Business> doInBackground(String... params) {
             try {
-                allFoods food = addElements.addToArray(test.allTypes, test.allFoods);
+                allFoods food = addElements.addToArray(RecCreator.allTypes, RecCreator.allFoods);
 
                 Map<String, String> p = new HashMap<>();
                 String[] terms = params[1].split(",");
@@ -175,7 +175,7 @@ public class SearchActivity extends Activity {
 
                 p.put("term", termFilter);
                 p.put("radius_filter", params[2]);
-                p.put("sort", "2");
+                p.put("sort", "1");
                 p.put("limit", "7");
                 Call<SearchResponse> call = yelpAPI.search(params[0], p);
 
@@ -187,13 +187,13 @@ public class SearchActivity extends Activity {
                 Map<String, String> p2 = new HashMap<>();
                 termFilter = "";
                 for(int i = 0; i < terms.length; i++) {
-                    String appendThing = test.createRec(food, terms[i]);
+                    String appendThing = RecCreator.createRec(food, terms[i]);
                     termFilter += "+" + appendThing;
                 }
 
                 p2.put("term", termFilter);
                 p2.put("radius_filter", params[2]);
-                p2.put("sort", "2");
+                p2.put("sort", "1");
                 p2.put("limit", "3");
                 Call<SearchResponse> call2 = yelpAPI.search(params[0], p2);
 

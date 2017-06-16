@@ -3,11 +3,11 @@ package com.example.seniorproject;
 import java.util.*;
 //import java.util.stream.Collectors;
 
-class test {
+class RecCreator {
     public static ArrayList<foodType> allTypes = new ArrayList<>();
     public static ArrayList<food> allFoods = new ArrayList<>();
 
-    public test() {
+    public RecCreator() {
 
     }
 

@@ -43,12 +43,18 @@ public class FeelingLuckyActivity extends Activity {
 
     }
 
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        setFields();
+    }
+
     public void setFields() {
         int index =0;
         Bundle data = getIntent().getExtras();
         ArrayList<Business> businesses = (ArrayList<Business>) data.getSerializable("businesses");
-      //  Random random = new Random();
-     //   index = random.nextInt(businesses.size());
+        Random random = new Random();
+        index = random.nextInt(businesses.size());
         TextView name = (TextView) findViewById(R.id.nameRestLucky);
         name.setText(businesses.get(index).name());
 
@@ -66,7 +72,7 @@ public class FeelingLuckyActivity extends Activity {
 
         }
 
-        //ratingBar.setRating(0);
+        ratingBar.setRating(businesses.get(index).rating().floatValue());
 
 
 

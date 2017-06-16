@@ -46,6 +46,12 @@ public class RecommendationActivity extends Activity {
 
     }
 
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        displayRecommendation();
+    }
+
     public void displayRecommendation() {
         Bundle data = getIntent().getExtras();
         ArrayList<Business> businesses = (ArrayList<Business>) data.getSerializable("businesses");

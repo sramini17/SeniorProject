@@ -106,28 +106,6 @@ public class RateActivity extends Activity {
 
                         MainActivity.map.put(restName, actualAverage);
                     }
-//
-
-//                    DatabaseReference temp = mRootRef.child("restaurants").child("temp").child("average");
-//
-//                    if (new Float(restaurant.average) != null) {
-//                        temp.setValue(restaurant.average);
-//                    }
-//
-//                    if (restaurant.name.equals("POTATO")) {
-//                        float avg = restaurant.average;
-//
-//                        //System.out.print("THE TEMPNAME IS:" + tempName);
-//                        //email fetched from database
-//
-//                        DatabaseReference temp = mRootRef.child("restaurants").child("temp").child("average");
-//                        temp.setValue(avg);
-//                    } else {
-//                        DatabaseReference temp = mRootRef.child("restaurants").child("temp").child("average");
-//                        temp.setValue(-2);
-//                    }
-//                    }
-//                }
                 }
 
                 @Override
@@ -157,23 +135,6 @@ public class RateActivity extends Activity {
         restNameRef.setValue(restName);
 
         updateFun();
-
-//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        //ref
-
-        //int size = dataSnapshot.getValue(Integer.class);
-                //Dinosaur dinosaur = dataSnapshot.getValue(Dinosaur.class);
-
-        //if (restRatingRef.get)
-
-//        DatabaseReference ratingStuff = FirebaseDatabase.getInstance().getReference("/asdfadsf`");
-//        if (ratingStuff == null) {
-//            DatabaseReference temp = mRootRef.child("restaurants").child("temp");
-//            temp.setValue("DSLKF");
-//        } else {
-//            DatabaseReference temp = mRootRef.child("restaurants").child("temp");
-//            temp.setValue("there");
-//        }
 
         finish();
     }
